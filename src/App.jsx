@@ -11,6 +11,13 @@ function App(){
     setInput('');  
   };
 
+  //刪除一筆
+  const deleteTodos = (indexToDelete) => {
+    const newTodos = todos.filter((_, idx) => idx !== indexToDelete);
+    console.log("刪除的索引",indexToDelete);
+    setTodos(newTodos);
+  }
+
   return(
     <div style={{ padding: '20px' }}>
       <h1>📝 My Todo List</h1>
@@ -25,7 +32,11 @@ function App(){
 
       <ul>
         {todos.map((todo,idx) => (
-          <li key={idx}>✅ {todo}</li>
+          <li key={idx}>✅ {todo}
+           <button onClick={() => deleteTodos(idx)} style={{ marginLeft: '10px' }}>
+              刪除
+            </button>
+          </li>
         ))}
       </ul>
     </div>
